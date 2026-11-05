@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="GPG Turni">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#008080">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
+<title>GPG Turni & Busta Paga</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="desktop">
+ <div id="finestra" class="bevel">
+  <div class="titolo"><span>🖥️ Gestione Turni & Busta Paga GPG 2026</span>
+   <button id="b-imp" class="tb" title="Impostazioni">⚙</button></div>
+  <div class="corpo">
+
+   <fieldset><legend>🛠️ Parametri</legend>
+    <div class="riga2">
+     <label>Livello GPG<select id="c-liv"></select></label>
+     <label>Paga base oraria<input id="c-paga" readonly></label>
+    </div>
+    <label>Scatti / indennità / superminimo (€/mese)<input id="c-extra" type="number" step="0.01" inputmode="decimal"></label>
+   </fieldset>
+
+   <fieldset><legend>📄 Importa PDF Foglina Turni</legend>
+    <input id="f-pdf" type="file" accept=".pdf,application/pdf" multiple hidden>
+    <button id="b-pdf" class="blu grande">⚡ Leggi & Importa PDF</button>
+    <div id="l-pdf" class="nota">Scegli uno o più PDF SE8107RG (Coopservice / Vigilanza CS).</div>
+   </fieldset>
+
+   <fieldset><legend>⌨️ Inserimento Veloce (INVIO = avanti)</legend>
+    <div class="riga2">
+     <label>Data<input id="f-data" type="date" enterkeyhint="next"></label>
+     <label>Servizio<select id="f-tipo"></select></label>
+    </div>
+    <label>Postazione / Luogo<input id="f-post" enterkeyhint="next" autocapitalize="characters" autocomplete="off"></label>
+    <div class="riga2">
+     <label>Ora inizio<input id="f-ini" inputmode="decimal" placeholder="es. 23,00" enterkeyhint="next"></label>
+     <label>Ora fine<input id="f-fin" inputmode="decimal" placeholder="es. 5,00" enterkeyhint="done"></label>
+    </div>
+    <button id="b-add" class="blu grande">➕ Aggiungi Turno</button>
+   </fieldset>
+
+   <div id="kpi">
+    <div class="kpi"><span>Lordo stimato</span><b id="k-lordo">0,00 €</b></div>
+    <div class="kpi"><span>Netto stimato</span><b id="k-netto">0,00 €</b></div>
+    <div class="kpi"><span>Ore (serv.+perm.+ferie)</span><b id="k-ore">0,00 h</b></div>
+    <div class="kpi"><span>Ore notte</span><b id="k-notte">0,00 h</b></div>
+   </div>
+
+   <fieldset><legend>📋 Registro Turni</legend>
+    <label>Mese<select id="c-mese"></select></label>
+    <div class="bottoni">
+     <button id="b-del">Elimina rigo</button>
+     <button id="b-csv">💾 CSV</button>
+     <button id="b-ced" class="blu">🖨️ Cedolino</button>
+     <button id="b-reset" class="rosso">⚠️ Azzera Tutto</button>
+    </div>
+    <div class="tab-wrap"><table id="tab">
+     <thead><tr><th>Data</th><th>Postazione</th><th>Servizio</th><th>Orario</th><th>Ore</th><th>Notte</th><th>Fest.</th></tr></thead>
+     <tbody></tbody></table></div>
+   </fieldset>
+
+   <fieldset><legend>🧾 Cedolino del mese</legend><div id="ced" class="carta"></div></fieldset>
+  </div>
+ </div>
+</div>
+
+<div id="modal" hidden>
+ <div class="dlg bevel">
+  <div class="titolo"><span id="m-tit"></span><button id="m-x" class="tb">✕</button></div>
+  <div id="m-corpo" class="corpo"></div>
+  <div class="bottoni" id="m-foot"></div>
+ </div>
+</div>
+
+<script src="lib/pdf.min.js"></script>
+<script src="core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
